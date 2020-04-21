@@ -7,8 +7,7 @@ Create a fullstack MERN application utilized CRUD + 1 that allows librarians to 
 - Library Card Holder's Name
 - Library Card Number (unique)
 - Library Card Holder's Phone Number
-- Library Card Holder's Address
-    - object with properties street number, zip code, and state
+- Library Card Holder's Zip Code
 ### Pages
 - Display all library card holders name and card number
 - Create a new library card holder
