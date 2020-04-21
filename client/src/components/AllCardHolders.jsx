@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Link } from 'react-router-dom' // import Link for routing
+import { BrowserRouter as Router, Link, Route } from 'react-router-dom' // imports to use Router	
 
 // class based component to fetch and render all documents from collection
 class AllCardHolders extends Component {
@@ -35,7 +35,8 @@ class AllCardHolders extends Component {
                     this.state.cardHolders.map((cardHolder) => {
                         return (
                             <div key={cardHolder._id}>
-                                <Link to={`/details/${cardHolder.cardNumber}`}>{cardHolder.cardHolderName}</Link>
+                                <Link to={`/details/${cardHolder.cardNumber}`}>
+                                {cardHolder.cardHolderName}</Link>
                                 <p>{cardHolder.cardNumber}</p>
                                 <hr />
                             </div>
