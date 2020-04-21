@@ -6,7 +6,7 @@ class AllCardHolders extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            cardHolders : []
+            cardHolders: []
         }
     }
     // load mock data into array
@@ -18,8 +18,7 @@ class AllCardHolders extends Component {
         const response = await fetch('/api');
         const json = await response.json();
         // console.table(json);
-        this.setState({cardHolders : json});
-
+        this.setState({ cardHolders: json });
     }
 
     render() {
@@ -28,13 +27,12 @@ class AllCardHolders extends Component {
                 <h3>Display All Card Holders</h3>
                 {
                     this.state.cardHolders.map((cardHolder) => {
-                        return(
-                            <div key = {cardHolder._id}>
-                                <Link to = {`/details/${cardHolder.cardNumber}`}>Details</Link>
-                            <p>{cardHolder.cardHolderName}</p>
-                            <p>{cardHolder.cardNumber}</p>
-                            <hr/>
-                        </div>
+                        return (
+                            <div key={cardHolder._id}>
+                                <Link to={`/details/${cardHolder.cardNumber}`}>{cardHolder.cardHolderName}</Link>
+                                <p>{cardHolder.cardNumber}</p>
+                                <hr />
+                            </div>
                         )
                     })
                 }

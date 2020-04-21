@@ -6,7 +6,7 @@ let CardHolderSchema = new Schema (
         cardHolderName : String,
         cardHolderNumber : Number,
         cardNumber : {type : Number, unique : true},
-        cardHolderZipCode : String,
+        cardHolderZipCode : Number,
     }
 )
 

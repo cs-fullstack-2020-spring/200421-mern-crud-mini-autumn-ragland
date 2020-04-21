@@ -12,7 +12,6 @@ class CreatCardHolder extends Component {
     }
 
     handleChange = (event) => {
-        console.log(event.target.value);
         if(event.target.name === "cardHolderName"){
             this.setState({cardHolderName : event.target.value});
         } else if(event.target.name === "cardHolderNumber"){
@@ -24,11 +23,29 @@ class CreatCardHolder extends Component {
         }
     }
 
-    // TODO add post fetch
-
-    handleSubmission = (event) => {
+    handleSubmission = async(event) => {
         event.preventDefault();
-        console.log(this.state);
+        // console.table(this.state);
+
+        // object for form submission
+        let formSubmission = {
+            cardHolderName : this.state.cardHolderName,
+            cardHolderNumber : this.state.cardHolderNumber,
+            cardNumber : this.state.cardNumber,
+            cardHolderZipCode : this.state.cardHolderZipCode
+        }
+        
+        // add document via api endpoint
+        let response = await fetch('/api', {
+            method : "POST",
+            headers : {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body : JSON.stringify(formSubmission)
+        });
+        let json = await response.json();
+        console.table(json);
     }
 
     render() {
@@ -48,12 +65,12 @@ class CreatCardHolder extends Component {
 
                     <div className="inputGroup">
                         <label htmlFor="cardNumber">Card Number : </label>
-                        <input type="text" id="cardNumber" name="cardNumber" value={this.state.cardNumber} onChange={this.handleChange} />
+                        <input type="number" id="cardNumber" name="cardNumber" value={this.state.cardNumber} onChange={this.handleChange} />
                     </div>
 
                     <div className="inputGroup">
-                        <label htmlFor="cardHolderZipCode">State : </label>
-                        <input type="text" id="cardHolderZipCode" name="cardHolderZipCode" value={this.state.cardHolderZipCode} onChange={this.handleChange} />
+                        <label htmlFor="cardHolderZipCode">Zip Code : </label>
+                        <input type="number" id="cardHolderZipCode" name="cardHolderZipCode" value={this.state.cardHolderZipCode} onChange={this.handleChange} />
                     </div>
 
                     <button onClick={this.handleSubmission}>Submit</button>
