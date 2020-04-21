@@ -1,6 +1,8 @@
+// create ref to base Schema
 let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
+// create Model Schema
 let CardHolderSchema = new Schema (
     {
         cardHolderName : String,
@@ -10,4 +12,5 @@ let CardHolderSchema = new Schema (
     }
 )
 
+// export model as cardHolder200421 collection
 module.exports = mongoose.model('cardHolder200421', CardHolderSchema);

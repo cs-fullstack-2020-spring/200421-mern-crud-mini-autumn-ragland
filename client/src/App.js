@@ -1,8 +1,8 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import AppContainer from './components/AppContainer';
 
+// display class based container component
 function App() {
   return (
     <div className="App">

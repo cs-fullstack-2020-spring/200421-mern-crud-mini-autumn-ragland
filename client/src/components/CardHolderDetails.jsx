@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom' // imports to use Router
 
+// class based component to fetch one card holder's details, display those details, route to update form, and delete card holder
 class CardHolderDetails extends Component {
     constructor(props) {
         super(props);
+        // card holder details
         this.state = {
             cardHolderName: "",
             cardHolderNumber: 0,
@@ -11,15 +13,18 @@ class CardHolderDetails extends Component {
             cardHolderZipCode: "",
         }
     }
-
+    // call async fetch
     componentDidMount = () => {
         this.loadData();
     }
-    // get all documents from api endpoint
+    // get one document from collection
     loadData = async () => {
+        // fetch from endpoint with query param
         const response = await fetch(`/api/${this.props.match.params.cardNumber}`);
+        // pull out json data
         const json = await response.json();
-        // console.log(json);
+        // console.log(json); // check json data returned in console
+        // update props of state to returned json data
         this.setState({
             cardHolderName: json.cardHolderName,
             cardHolderNumber: json.cardHolderNumber,
@@ -28,15 +33,20 @@ class CardHolderDetails extends Component {
         });
     }
 
-    // TODO add delete event handler - fetch
-    handleDeletion = async() => {
+    // event handler when delete button is clicked
+    handleDeletion = async () => {
+        // fetch from delete endpoint with query param
         let response = await fetch(`/api/${this.props.match.params.cardNumber}`, {
-            method : "DELETE"
+            method: "DELETE"
         });
+        // pull out json data
         let json = await response.json();
-        console.table(json);
+        // console.log(json); // check deleted document in console
     }
 
+    // display one card holder's full details (name, number card number, zip code)
+    // button to update card holder's details links to update page (route in app container)
+    // button to delete with event listener
     render() {
         return (
             <div>

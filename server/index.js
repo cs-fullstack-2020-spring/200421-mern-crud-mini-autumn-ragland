@@ -1,9 +1,13 @@
+// create server
 let express = require('express');
 let app = express();
+// define port number variable
 let port = 8000;
 
+// import router module
 let api = require('./routes/api');
 
+// mount routes
 app.use('/api', api);
 
 // CONNECTING TO A MONGO DB DATABASE
@@ -16,6 +20,7 @@ mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true, useF
 let db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
+// server listening on port
 app.listen(port, () => {
     console.log(`Listening on ${port}`);
 })

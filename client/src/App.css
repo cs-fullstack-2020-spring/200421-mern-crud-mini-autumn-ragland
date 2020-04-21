@@ -13,11 +13,13 @@
   color: white;
 }
 
+/* style router links */
 .pageLink {
   padding : 1%;
   font-size : 24px;
 }
 
+/* style form labels and input fields together */
 .inputGroup {
   display : block;
   padding : 1%

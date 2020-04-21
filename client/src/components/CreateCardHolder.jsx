@@ -1,53 +1,60 @@
 import React, { Component } from 'react';
 
+// class based component to add a document to the collection
 class CreatCardHolder extends Component {
     constructor(props) {
         super(props);
+        // card holder details
         this.state = {
             cardHolderName: "",
             cardHolderNumber: 0,
             cardNumber: "",
-            cardHolderZipCode : 0,
+            cardHolderZipCode: 0,
         }
     }
 
+    // event handler to update state based on form input fields
     handleChange = (event) => {
-        if(event.target.name === "cardHolderName"){
-            this.setState({cardHolderName : event.target.value});
-        } else if(event.target.name === "cardHolderNumber"){
-            this.setState({cardHolderNumber : event.target.value});
-        } else if(event.target.name === "cardNumber"){
-            this.setState({cardNumber : event.target.value});
-        } else if(event.target.name === "cardHolderZipCode"){
-            this.setState({cardHolderZipCode : event.target.value});
+        if (event.target.name === "cardHolderName") {
+            this.setState({ cardHolderName: event.target.value });
+        } else if (event.target.name === "cardHolderNumber") {
+            this.setState({ cardHolderNumber: event.target.value });
+        } else if (event.target.name === "cardNumber") {
+            this.setState({ cardNumber: event.target.value });
+        } else if (event.target.name === "cardHolderZipCode") {
+            this.setState({ cardHolderZipCode: event.target.value });
         }
     }
 
-    handleSubmission = async(event) => {
-        event.preventDefault();
-        // console.table(this.state);
+    // event handler to create document from form submission
+    handleSubmission = async (event) => {
+        event.preventDefault(); // stop page from reloading
+        // console.table(this.state); // check current state on submission in console
 
-        // object for form submission
+        // object from form submission to send via fetch
         let formSubmission = {
-            cardHolderName : this.state.cardHolderName,
-            cardHolderNumber : this.state.cardHolderNumber,
-            cardNumber : this.state.cardNumber,
-            cardHolderZipCode : this.state.cardHolderZipCode
+            cardHolderName: this.state.cardHolderName,
+            cardHolderNumber: this.state.cardHolderNumber,
+            cardNumber: this.state.cardNumber,
+            cardHolderZipCode: this.state.cardHolderZipCode
         }
-        
-        // add document via api endpoint
+
+        // fetch post endpoint
         let response = await fetch('/api', {
-            method : "POST",
-            headers : {
+            method: "POST",
+            headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body : JSON.stringify(formSubmission)
+            // send form submission in request body
+            body: JSON.stringify(formSubmission)
         });
+        // pull out json data
         let json = await response.json();
-        console.table(json);
+        // console.log(json); // check returned json data in console
     }
 
+    // display from with controlled components and submit button with event listener
     render() {
         return (
             <div>
